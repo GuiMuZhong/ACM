@@ -1,0 +1,51 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	
+	"ACM C++ default code": {
+		"prefix": "acm",
+		"body": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst double EPS = 1e-8;\nconst int mod = 1e9 + 7;\nconst int INF = 0x3f3f3f3f;\nconst int maxn = 1e6 + 10;\n\n$1\n\nint main()\n{\n    #ifdef cqw\n    freopen(\"F:/ACM/data/in.txt\", \"r\", stdin);\n    freopen(\"F:/ACM/data/out.txt\", \"w\", stdout);\n    #endif\n\n    $0\n\n    return 0;\n}",
+		"description": "ACM C++ default code"
+	},
+
+	"operator <": {
+		"prefix": "opx",
+		"body": "bool operator < (const $1& A) const {\n    return $2 < $3;\n}",
+		"description": "bool operator < "
+	},
+
+	"Binary Indexed Tree": {
+		"prefix": "bit",
+		"body": "int bit[maxn];\n\nvoid add(int i, int x)\n{\n    while(i > 0 && i < maxn){\n        bit[i] += x;\n        i += i & -i;\n    }\n}\n\nint sum(int i)\n{\n    int ans = 0;\n    while(i){\n        ans += bit[i];\n        i -= i & -i;\n    }\n    return ans;\n}",
+		"description": "Binary Indexed Tree"
+	},
+
+	"Segment Tree Node": {
+		"prefix": "stn",
+		"body": "int Tree[maxn<<2];\nint leaf[maxn];\n\nvoid Build(int l, int r, int rt)\n{\n    if (l == r) {\n        Tree[rt] = leaf[l];\n        return;\n    }\n    int mid = (l + r) >> 1;\n\n    Build(l, mid, rt<<1);\n    Build(mid + 1, r, rt<<1|1);\n\n    Tree[rt] = max(Tree[rt<<1], Tree[rt<<1|1]);\n}\n\nvoid Update(int pos, int val, int l, int r, int rt)\n{\n    if(l == r) {\n        Tree[rt] = val;\n        return;\n    }\n\n    int mid = (l + r) >> 1;\n\n    if(pos <= mid) Update(pos, val, l, mid, rt<<1);\n    else Update(pos, val, mid +1, r, rt<<1|1);\n\n    Tree[rt] = max(Tree[rt<<1], Tree[rt<<1|1]);\n}\n\nint Query(int L, int R, int l, int r, int rt)\n{\n    if(L <= l && R >= r) return Tree[rt];\n\n    int mid = (l + r) >> 1;\n    int ans = 0;\n\n    if (L <= mid) ans = max(ans, Query(L, R, l, mid, rt<<1));\n    if (R > mid) ans = max(ans, Query(L, R, mid+1, r, rt<<1|1));\n\n    return ans;\n}",
+		"description": "Segment Tree Node"
+	},
+
+	"Quick Power Mod": {
+		"prefix": "pow_mod",
+		"body": "long long pow_mod(long long x, long long n, long long mod)\n{\n    long long ans = 1;\n    while(n){\n        if(n & 1) ans = ans * x % mod;\n        x = x * x % mod;\n        n >>= 1;\n    }\n    return ans;\n}",
+		"description": "quick power mod"
+	},
+
+	"Inverse Element": {
+		"prefix": "ny",
+		"body": "void Exgcd(long long a, long long b, long long& x, long long& y)\n{\n    if(!b){\n        y = 0; x = 1;\n        return ;\n    }\n    Exgcd(b, a % b, y, x);\n    y -= a / b * x;\n}\n \nlong long NY(long long a, long long b)\n{\n    long long x, y;\n    Exgcd(a, b, x, y);\n    return (x % mod + mod) % mod;\n}",
+		"description": "Inverse Element"
+	}
+}
