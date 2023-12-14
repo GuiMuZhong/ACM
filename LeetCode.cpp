@@ -6,6 +6,8 @@ const int mod = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const int maxn = 1e6 + 10;
 
+// int using 
+
 int main()
 {
 #ifdef cqw
