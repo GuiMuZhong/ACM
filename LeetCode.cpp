@@ -7,3 +7,8 @@ const int INF = 0x3f3f3f3f;
 const int maxn = 1e6 + 10;
 
 
+
+int main() {
+
+    return 0;
+}
