@@ -1,4 +1,4 @@
-.PHONY: help git-status git-add git-commit git-push git-pull git-log git-branch git-merge
+.PHONY: help git-status git-add git-commit git-push git-pull git-log git-branch
 
 help:
 	@echo "Available git commands:"
@@ -21,16 +21,13 @@ git-commit:
 	git commit -m "$(MSG)"
 
 git-push:
-	git push origin $(BRANCH)
+	git push
 
 git-pull:
-	git pull origin $(BRANCH)
+	git pull
 
 git-log:
 	git log --oneline -10
 
 git-branch:
 	git branch -a
-
-git-merge:
-	git merge $(BRANCH)

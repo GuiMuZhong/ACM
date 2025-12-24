@@ -1,11 +1,19 @@
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
 const int max_n = 1000000;
 int Tree[max_n<<2];
 int A[max_n];
 
-void Build(int l, int r, int rt)        //建树
+void Build(int l, int r, int rt) 
 {
     if (l == r){
-        scanf("%I64d", &Tree[rt]);
+        scanf("%d", &Tree[rt]);
         return;
     }
     int mid = (l + r) >> 1;
@@ -16,7 +24,7 @@ void Build(int l, int r, int rt)        //建树
     Tree[rt] = max(Tree[rt<<1], Tree[rt<<1|1]);
 }
 
-void Update(int pos, int val, int l, int r, int rt)     //单个数据更新
+void Update(int pos, int val, int l, int r, int rt) 
 {
     if(l == r){
         Tree[rt] = val;
@@ -31,7 +39,7 @@ void Update(int pos, int val, int l, int r, int rt)     //单个数据更新
     Tree[rt] = max(Tree[rt<<1], Tree[rt<<1|1]);
 }
 
-int Query(int L, int R, int l, int r, int rt)       //区间查询
+int Query(int L, int R, int l, int r, int rt) 
 {
     if(L <= l && R >= r) return Tree[rt];
 
